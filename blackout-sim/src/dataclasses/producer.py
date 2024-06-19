@@ -1,4 +1,4 @@
-from node import Node
+from base import Node
 
 class Producer(Node):
     production_factor: int

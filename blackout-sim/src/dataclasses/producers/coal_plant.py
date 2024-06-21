@@ -1,12 +1,9 @@
 from datetime import datetime
-from .base import Entity
-from abc import abstractmethod, ABC
+from ..producer import Producer
 
-class Producer(Entity):
+class CoalPlant(Producer):
     def __init__(self, id: str = None, created_at: datetime = None) -> None:
         super().__init__(id, created_at)
 
-    @abstractmethod
     def get_production(self):
-        """Returns the production value of a producer"""
-        return
+        pass

@@ -1,5 +1,5 @@
 from datetime import datetime
-from .base import Entity
+from .entity import Entity
 from abc import abstractmethod, ABC
 
 class Producer(Entity):

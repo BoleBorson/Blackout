@@ -1,6 +1,6 @@
-from dataclasses.producers import *
-from dataclasses.consumers import *
-from dataclasses.node import Node
+from models.producers import *
+from models.consumers import *
+from models.node import Node
 
 coal_node = Node(producer=CoalPlant())
 

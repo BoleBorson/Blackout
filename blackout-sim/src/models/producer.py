@@ -11,3 +11,6 @@ class Producer(Entity):
     def get_production(self):
         """Returns the production value of a producer"""
         return self.base_production
+    
+    def __str__(self) -> str:
+        return "Producer Type: "

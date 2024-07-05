@@ -1,4 +1,5 @@
-from .coal_plant import CoalPlant
+from .producers import CoalPlant
+from .producer_registry import PRODUCERS
 
 __all__ = [
     "CoalPlant"

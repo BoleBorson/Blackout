@@ -1,6 +1,8 @@
 from datetime import datetime
 from ..consumer import Consumer
+from consumer_registry import *
 
+@register_consumer("city")
 class City(Consumer):
     def __init__(self, id: str = None, created_at: datetime = None) -> None:
         super().__init__(id, created_at)

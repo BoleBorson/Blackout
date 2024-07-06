@@ -11,7 +11,7 @@ class Graph:
         self.edges = []
 
     def add_node_to_graph(
-        self, producer_type: str = None, consumer_type: str = None
+        self, producer_type: str = "default", consumer_type: str = "default"
     ) -> None:
         node = Node(
             producer=producer_factory(producer_type),

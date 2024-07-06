@@ -11,3 +11,6 @@ class Consumer(Entity):
     def get_consumption(self):
         """Returns the consumption value of a consumer"""
         return self.base_consumption  
+    
+    def __str__(self) -> str:
+        return "Consumer Type: "

@@ -1,17 +1,36 @@
 from models.producers import *
 from models.consumers import *
 from models.node import Node
+from consumer_factory import consumer_factory
+from producer_factory import producer_factory
 
-coal_node = Node(producer=CoalPlant())
 
-city_node = Node(consumer=City())
-
-print(coal_node.producer.get_production())
-
-class Graph():
+class Graph:
     def __init__(self) -> None:
-        self.nodes = {}
-        self.edges = {}
+        self.nodes = []
+        self.edges = []
 
-    def add_node_to_graph(producer_type: str = None, consumer_type: str = None) -> None:
-        pass
+    def add_node_to_graph(
+        self, producer_type: str = None, consumer_type: str = None
+    ) -> None:
+        node = Node(
+            producer=producer_factory(producer_type),
+            consumer=consumer_factory(consumer_type),
+        )
+        self.nodes.append(node)
+
+    def __str__(self) -> str:
+        output = "Nodes in Graph: \n \n"
+        for node in self.nodes:
+            output += node.__str__() + "\n\n"
+        output += "\nEdges in Graph \n \n"
+        for edge in self.edges:
+            output += edge.__str__()
+        return output
+
+
+graph = Graph()
+graph.add_node_to_graph(producer_type="coal_plant")
+graph.add_node_to_graph(producer_type="nuclear_power_plant")
+graph.add_node_to_graph(consumer_type="city")
+print(graph)

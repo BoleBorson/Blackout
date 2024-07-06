@@ -1,7 +1,7 @@
 from models.consumers.consumer_registry import CONSUMERS
 from models.consumer import Consumer
 
-def consumer_factory(consumer_type: str):
+def consumer_factory(consumer_type: str = None):
     """Returns a constructed Producer Object
 
     Args:
@@ -10,5 +10,9 @@ def consumer_factory(consumer_type: str):
     Returns:
         Consumer: Valid Consumer type ex: City
     """
-    class_obj: Consumer = CONSUMERS.get(consumer_type)
-    return class_obj()
+    if consumer_type:
+        class_obj: Consumer = CONSUMERS.get(consumer_type)
+        return class_obj()
+    else:
+        class_obj: Consumer = CONSUMERS.get("default")
+        return class_obj()

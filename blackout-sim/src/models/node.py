@@ -19,3 +19,6 @@ class Node(Entity):
         self.producer: Producer = producer
         self.consumer = consumer
         self.edges: list[Edge] = []
+
+    def __str__(self) -> str:
+        return f"Node {self.id} \n {self.producer.__str__()} \n {self.consumer.__str__()}"

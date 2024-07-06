@@ -1,7 +1,7 @@
 from models.producers.producer_registry import PRODUCERS
 from models.producer import Producer
 
-def producer_factory(producer_type: str):
+def producer_factory(producer_type: str = None):
     """Returns a constructed Producer Object
 
     Args:
@@ -10,5 +10,9 @@ def producer_factory(producer_type: str):
     Returns:
         Producer: Valid Producer type ex: CoalPlant
     """
-    class_obj: Producer = PRODUCERS.get(producer_type)
-    return class_obj()
+    if producer_type:
+        class_obj: Producer = PRODUCERS.get(producer_type)
+        return class_obj()
+    else:
+        class_obj: Producer = PRODUCERS.get("default")
+        return class_obj()

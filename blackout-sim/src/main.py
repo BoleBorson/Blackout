@@ -1,8 +1,8 @@
 from models.producers import *
 from models.consumers import *
 from models.node import Node
-from consumer_factory import consumer_factory
-from producer_factory import producer_factory
+from factories.consumer_factory import consumer_factory
+from factories.producer_factory import producer_factory
 
 
 class Graph:

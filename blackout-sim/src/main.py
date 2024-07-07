@@ -1,6 +1,7 @@
 from models.producers import *
 from models.consumers import *
 from models.node import Node
+from models.edge import Edge
 from factories.consumer_factory import consumer_factory
 from factories.producer_factory import producer_factory
 
@@ -12,12 +13,19 @@ class Graph:
 
     def add_node_to_graph(
         self, producer_type: str = "default", consumer_type: str = "default"
-    ) -> None:
+    ) -> Node:
         node = Node(
             producer=producer_factory(producer_type),
             consumer=consumer_factory(consumer_type),
         )
         self.nodes.append(node)
+        return node
+    
+    def create_edge(source_node: Node, destination_node: Node) -> Edge:
+        edge = Edge(
+            source_node=source_node,
+            destination_node=destination_node
+        )
 
     def __str__(self) -> str:
         output = "Nodes in Graph: \n \n"

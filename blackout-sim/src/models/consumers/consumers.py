@@ -10,7 +10,7 @@ class DefaultConsumer(Consumer):
         self.consumption = 0
 
     def get_consumption(self):
-        return super().get_consumption() + self.consumption
+        return self.consumption
     
     def __str__(self) -> str:
         return super().__str__() + "Default: No Consumption Value"

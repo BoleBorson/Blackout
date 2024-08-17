@@ -10,11 +10,23 @@ func main() {
 	g := graph.NewGraph()
 	node := graph.NewNode("Cole")
 	node2 := graph.NewNode("Shelley")
+	node3 := graph.NewNode("Joe")
 
 	g.AddNode(node)
 	// Test adding same node twice to ensure set works
 	g.AddNode(node)
 	g.AddNode(node2)
+	err := g.AddEdge(node, node2)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = g.AddEdge(node2, node3)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	fmt.Println(g)
 	coleNode, err := g.GetNode(node)
@@ -25,9 +37,12 @@ func main() {
 
 	fmt.Println(coleNode)
 
-	node3 := graph.NewNode("Joe")
-	g.AddEdge(node, node3)
-
 	fmt.Println(g)
+	edge, err := node.GetEdge(node3)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(*edge)
 
 }

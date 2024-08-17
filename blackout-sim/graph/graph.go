@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/mitchellh/hashstructure"
@@ -17,7 +18,6 @@ func NewGraph() Graph {
 }
 
 func (g Graph) AddNode(node *Node) error {
-	// want to hash the actual struct
 	nodeHash, err := hashstructure.Hash(*node, nil)
 	if err != nil {
 		return err
@@ -38,25 +38,32 @@ func (g Graph) GetNode(node *Node) (Node, error) {
 }
 
 func (g Graph) AddEdge(srcNode, destNode *Node) error {
-	// check for nodes existence
-	srcNodeHash, err := hashstructure.Hash(*srcNode, nil)
-	if err != nil {
-		return err
-	}
-
-	destNodeHash, err := hashstructure.Hash(*destNode, nil)
-	if err != nil {
-		return err
+	// if src and dest node are the same, throw error
+	ok, err := srcNode.Compare(destNode)
+	if err != nil || ok {
+		return errors.New("Edge cannot connect a node to itself")
 	}
 
 	// if node is not in graph then add it
-	if _, ok := g.Nodes[srcNodeHash]; !ok {
+	ok, err = g.inGraph(srcNode)
+	if err != nil {
+		return err
+	}
+	if !ok {
 		g.AddNode(srcNode)
 	}
-	if _, ok := g.Nodes[destNodeHash]; !ok {
+	ok, err = g.inGraph(destNode)
+	if err != nil {
+		return err
+	}
+	if !ok {
 		g.AddNode(destNode)
 	}
 
+	destNodeHash, err := hashstructure.Hash(destNode, nil)
+	if err != nil {
+		return err
+	}
 	srcNode.Edges[destNodeHash] = NewEdge(10, destNode)
 
 	fmt.Println("========Edge Addition=======")
@@ -64,4 +71,16 @@ func (g Graph) AddEdge(srcNode, destNode *Node) error {
 	fmt.Println("Dest Node:", destNode)
 
 	return nil
+}
+
+func (g Graph) inGraph(node *Node) (bool, error) {
+	nodeHash, err := hashstructure.Hash(*node, nil)
+	if err != nil {
+		return false, err
+	}
+
+	if _, ok := g.Nodes[nodeHash]; !ok {
+		return false, nil
+	}
+	return true, nil
 }

@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "payload": "Coal Plant",
+        "edges": [2, 5]
+    },
+    {
+        "id": 2,
+        "payload": "Reston City",
+        "edges": []
+    },
+    {
+        "id": 3,
+        "payload": "Solar",
+        "edges": [2, 4]
+    },
+    {
+        "id": 4,
+        "payload": "Arlington City",
+        "edges": []
+    },
+    {
+        "id": 5,
+        "payload": "Battery",
+        "edges": [4]
+    }
+]

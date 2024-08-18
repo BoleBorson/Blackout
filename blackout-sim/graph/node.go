@@ -7,6 +7,7 @@ import (
 )
 
 type Node struct {
+	Hash    uint64
 	Payload any
 	Edges   map[uint64]*Edge
 }

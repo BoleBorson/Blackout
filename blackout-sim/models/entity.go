@@ -13,7 +13,6 @@ type Entity struct {
 	Producer Producer
 }
 
-// dummy constructor to ensure I know how interfaces work
 func NewEntity() *Entity {
 	return &Entity{
 		// ID needed to randomize hash of entity in the graph

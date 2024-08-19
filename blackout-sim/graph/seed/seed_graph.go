@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"blackout.com/sim/graph"
+	"blackout.com/sim/models"
 )
 
 // dummy record as I am not sure what fields I actually want in Node
@@ -23,7 +24,8 @@ func SeedFromJSON(filePath string) graph.Graph {
 
 	// Need every node created before an edge can be made
 	for _, seedNode := range seed {
-		node := graph.NewNode(seedNode.Payload)
+		// just adds the same entity to every node, need factories
+		node := graph.NewNode(models.NewEntity())
 		idTracker[seedNode.Id] = node
 		g.AddNode(node)
 	}

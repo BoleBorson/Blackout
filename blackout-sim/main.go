@@ -4,12 +4,16 @@ import (
 	"fmt"
 
 	"blackout.com/sim/graph/seed"
+	"blackout.com/sim/models"
 )
 
 func main() {
 
 	g := seed.SeedFromJSON("/home/cole/code-projects/Blackout/blackout-sim/graph/seed/test_graph.json")
 	fmt.Println(g)
+
+	entity := models.NewEntity()
+	fmt.Println(entity.Consumer.GetConsumption())
 
 	// g := graph.NewGraph()
 	// node := graph.NewNode("Cole")
